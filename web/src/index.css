@@ -82,6 +82,11 @@ button:focus-visible {
 .search { display:flex; gap:8px; flex:1 }
 .search input { flex:1; padding:8px; border-radius:6px; border:1px solid #3a3a3a; background:#1a1a1a; color:#fff }
 .links a { color:#fff; margin-left:8px }
+.suggestions { position:absolute; margin-top:36px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:8px; width: 60%; max-width: 600px; list-style:none; padding:6px; z-index: 20 }
+.suggestion { padding:8px; border-radius:6px; cursor:pointer }
+.suggestion:hover, .suggestion.active { background:#2a2a2a }
+.hc .suggestions { background:#000; border-color:#fff }
+.hc .suggestion:hover, .hc .suggestion.active { background:#333 }
 
 .container { max-width: 1000px; margin: 0 auto; padding: 16px; }
 .lead { color: #888; margin-bottom: 16px }
