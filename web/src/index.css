@@ -113,6 +113,12 @@ button:focus-visible {
 .content { min-height: 300px }
 .concept-chips { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 }
 .concept-chip { font-size:12px; padding:4px 8px; border:1px solid #3a3a3a; border-radius:999px }
+.heading-icon { display:inline-block; vertical-align:middle; margin-right:6px }
+
+/* Lazy image skeleton */
+.lazy-wrap { position: relative; min-height: 120px }
+.lazy-skeleton { background: linear-gradient(90deg, #1a1a1a 0%, #222 50%, #1a1a1a 100%); background-size: 200% 100%; animation: shimmer 1.2s infinite; height: 100%; border-radius: 8px }
+@keyframes shimmer { 0% { background-position: 0% 0 } 100% { background-position: 200% 0 } }
 
 /* Screen reader live region */
 .sr { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
@@ -121,6 +127,10 @@ button:focus-visible {
 .hc body, .hc .navbar, .hc .card, .hc .list-item, .hc .search input { background:#000 !important; color:#fff !important; border-color:#fff !important }
 .hc .progress { background:#333 }
 .hc .progress .bar { background:#0ff }
+
+/* Skip link */
+.skip-link { position:absolute; left:-9999px; top:0; background:#646cff; color:#fff; padding:8px 12px; border-radius:6px }
+.skip-link:focus { left: 8px; top: 8px; z-index: 1000 }
 
 @media (max-width: 700px) {
   .guide-layout { grid-template-columns: 1fr }

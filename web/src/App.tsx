@@ -14,6 +14,7 @@ export default function App() {
     <PreferencesProvider>
       <ProgressProvider>
         <div className="app" data-age="12+">
+          <a href="#main" className="skip-link">Skip to content</a>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -23,6 +24,9 @@ export default function App() {
             <Route path="/bookmarks" element={<Bookmarks />} />
           </Routes>
           <div className="sr" aria-live="polite" aria-atomic="true" />
+          <footer role="contentinfo" className="container" style={{ fontSize: 12, color: '#777', paddingTop: 16 }}>
+            © Learn System Design — Accessible learning for ages 12+
+          </footer>
         </div>
       </ProgressProvider>
     </PreferencesProvider>

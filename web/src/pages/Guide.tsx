@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { guides } from '../content'
 import { useProgress } from '../context/ProgressContext'
+import HeadingIcon from '../components/HeadingIcon'
+import SmartPicture from '../components/SmartPicture'
 
 export default function Guide() {
   const { id } = useParams()
@@ -79,8 +81,23 @@ export default function Guide() {
             ))}
           </ul>
         </aside>
-        <article className="content" aria-label="Guide content">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{guide.body}</ReactMarkdown>
+        <article className="content" id="main" aria-label="Guide content">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h2: ({ node, children, ...props }: any) => (
+                <h2 {...props}><HeadingIcon text={String(children)} /> {children}</h2>
+              ),
+              h3: ({ node, children, ...props }: any) => (
+                <h3 {...props}><HeadingIcon text={String(children)} /> {children}</h3>
+              ),
+              img: ({ src, alt }: any) => (
+                <SmartPicture src={String(src)} alt={String(alt || '')} />
+              ),
+            }}
+          >
+            {guide.body}
+          </ReactMarkdown>
         </article>
       </div>
     </main>
