@@ -25,15 +25,11 @@ a:focus-visible, button:focus-visible, .card:focus-visible, .list-item:focus-vis
   outline: 3px solid #ffd54f;
   outline-offset: 2px;
 }
-.hc a:focus-visible, .hc button:focus-visible, .hc .card:focus-visible, .hc .list-item:focus-visible, .hc .chip:focus-visible, .hc .suggestion:focus-visible {
-  outline-color: #0ff;
-}
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-size: calc(16px * var(--text-scale, 1));
 }
 
 h1 {
@@ -96,8 +92,6 @@ button:focus-visible {
 .suggestions { position:absolute; margin-top:36px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:8px; width: 60%; max-width: 600px; list-style:none; padding:6px; z-index: 20 }
 .suggestion { padding:8px; border-radius:6px; cursor:pointer }
 .suggestion:hover, .suggestion.active { background:#2a2a2a }
-.hc .suggestions { background:#000; border-color:#fff }
-.hc .suggestion:hover, .hc .suggestion.active { background:#333 }
 
 .container { max-width: 1000px; margin: 0 auto; padding: 16px; }
 .lead { color: #888; margin-bottom: 16px }
@@ -111,8 +105,6 @@ button:focus-visible {
 .card-progress { position: relative; margin-top: 8px; background: #2a2a2a; border-radius: 999px; height: 10px; overflow: hidden }
 .card-progress .bar { position:absolute; left:0; top:0; height:100%; background:#4caf50 }
 .card-progress-text { position:absolute; right:6px; top:-18px; font-size:12px; color:#aaa }
-.hc .card-progress { background:#000 }
-.hc .card-progress .bar { background:#ff0 }
 
 /* Lists */
 .list { display:flex; flex-direction:column; gap:8px }
@@ -155,10 +147,7 @@ button:focus-visible {
 /* Screen reader live region */
 .sr { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
 
-/* High contrast mode */
-.hc body, .hc .navbar, .hc .card, .hc .list-item, .hc .search input { background:#000 !important; color:#fff !important; border-color:#fff !important }
-.hc .progress { background:#333 }
-.hc .progress .bar { background:#0ff }
+
 
 /* Skip link */
 .skip-link { position:absolute; left:-9999px; top:0; background:#646cff; color:#fff; padding:8px 12px; border-radius:6px }
@@ -170,7 +159,6 @@ button:focus-visible {
 .callout-info { border-color:#1e90ff; background:#101820 }
 .callout-tip { border-color:#2ecc71; background:#0e1a13 }
 .callout-warning { border-color:#f39c12; background:#1a1308 }
-.hc .callout { border-color:#fff; background:#000 }
 
 @media (max-width: 700px) {
   .guide-layout { grid-template-columns: 1fr }
