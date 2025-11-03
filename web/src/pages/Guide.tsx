@@ -5,14 +5,14 @@ import remarkGfm from 'remark-gfm'
 import { guides } from '../content'
 import { useProgress } from '../context/ProgressContext'
 import HeadingIcon from '../components/HeadingIcon'
-import SmartPicture from '../components/SmartPicture'
+import SmartPicture from '../components/SmartPicture.tsx'
 import { getCalloutsForGuide, getCalloutsForHeading } from '../callouts'
 import CalloutBox from '../components/Callout'
 
 export default function Guide() {
   const { id } = useParams()
   const guide = guides.find(g => g.id === id)
-  const { progress, toggleStep } = useProgress()
+  const { progress, toggleStep, clearGuide } = useProgress()
   const gp = (id && progress[id]) || { completedStepIds: [], xp: 0 }
 
   if (!guide) return <main className="container"><h1>Guide not found</h1></main>
@@ -58,6 +58,17 @@ export default function Guide() {
         </div>
         <button onClick={toggleBookmark} aria-pressed={bookmarked} aria-label={bookmarked ? 'Remove bookmark' : 'Add bookmark'}>
           {bookmarked ? '★ Bookmarked' : '☆ Bookmark'}
+        </button>
+        <button
+          onClick={() => {
+            if (id && window.confirm('Reset all progress for this guide?')) {
+              clearGuide(id)
+              announce('Progress reset')
+            }
+          }}
+          aria-label="Reset progress for this guide"
+        >
+          Reset Progress
         </button>
       </div>
       <div className="concept-chips" aria-label="Concept map">

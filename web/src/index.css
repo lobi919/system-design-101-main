@@ -83,6 +83,10 @@ button:focus-visible {
   border-bottom: 1px solid #2a2a2a;
 }
 .nav-inner { display: flex; align-items: center; gap: 12px; padding: 10px 16px; }
+.back-btn { display:flex; align-items:center; gap:6px; padding:6px 10px; border:1px solid #2a2a2a; border-radius:8px; background:#1a1a1a; color:#fff }
+.back-btn:hover { border-color:#646cff }
+.back-btn[disabled] { opacity: 0.5; cursor: not-allowed }
+.back-btn-text { font-size: 0.9rem }
 .brand { display:flex; align-items:center; gap:8px; font-weight:700; color:inherit }
 .brand-logo { background:#646cff; color:#fff; padding:4px 6px; border-radius:6px; font-size:12px }
 .brand-name { font-size:14px }
@@ -118,6 +122,11 @@ button:focus-visible {
 .chips { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 }
 .chip { padding:6px 10px; border:1px solid #3a3a3a; border-radius:999px; background:#1a1a1a }
 
+/* Search filters and messages */
+.filters { display:flex; gap:12px; align-items:flex-end; margin:12px 0 16px }
+.filters label { display:flex; flex-direction:column; font-size:0.9rem }
+.error { background:#fee; border:1px solid #f88; color:#700; padding:8px 12px; border-radius:6px; margin-bottom:12px }
+
 /* Guide */
 .guide-header { display:flex; align-items:center; justify-content:space-between; gap:16px }
 .progress { position:relative; flex:1; height:10px; background:#2a2a2a; border-radius:999px }
@@ -136,6 +145,12 @@ button:focus-visible {
 .lazy-wrap { position: relative; min-height: 120px }
 .lazy-skeleton { background: linear-gradient(90deg, #1a1a1a 0%, #222 50%, #1a1a1a 100%); background-size: 200% 100%; animation: shimmer 1.2s infinite; height: 100%; border-radius: 8px }
 @keyframes shimmer { 0% { background-position: 0% 0 } 100% { background-position: 200% 0 } }
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .lazy-skeleton { animation: none }
+  button, .card, .list-item, .chip { transition: none }
+}
 
 /* Screen reader live region */
 .sr { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }

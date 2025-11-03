@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Fuse from 'fuse.js'
 import { guides } from '../content'
-import AccessibilityControls from './AccessibilityControls'
 
 export default function Navbar() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const [canGoBack, setCanGoBack] = React.useState<boolean>(false)
   const [q, setQ] = React.useState('')
   const [open, setOpen] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
@@ -66,9 +67,34 @@ export default function Navbar() {
   const onBlur = () => {
     setTimeout(() => setOpen(false), 150) // allow click
   }
+  React.useEffect(() => {
+    // Heuristic: allow back when history length suggests prior entries
+    // Works across major browsers; preserves state via native back.
+    setCanGoBack(window.history.length > 1)
+  }, [location])
+  const onBack = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (canGoBack) {
+      navigate(-1)
+    } else {
+      // Fallback to home if no prior entry
+      navigate('/')
+    }
+  }
   return (
     <header className="navbar" role="banner">
       <div className="nav-inner">
+        <button
+          type="button"
+          className="back-btn"
+          onClick={onBack}
+          disabled={!canGoBack && location.pathname === '/'}
+          aria-label="Go back to previous page"
+          title="Back"
+        >
+          <span aria-hidden>←</span>
+          <span className="back-btn-text" aria-hidden> Back</span>
+        </button>
         <Link to="/" className="brand" aria-label="System Design Learning Home">
           <span className="brand-logo" aria-hidden>SD101</span>
           <span className="brand-name">Learn System Design</span>
@@ -112,7 +138,6 @@ export default function Navbar() {
         <nav className="links" aria-label="Primary">
           <Link to="/bookmarks">Bookmarks</Link>
         </nav>
-        <AccessibilityControls />
       </div>
     </header>
   )

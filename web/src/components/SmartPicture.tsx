@@ -1,4 +1,4 @@
-import React from 'react'
+// React import not required with react-jsx; no React symbols used
 
 type Props = {
   src: string

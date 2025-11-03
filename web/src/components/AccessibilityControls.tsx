@@ -1,4 +1,3 @@
-import React from 'react'
 import { usePreferences } from '../context/PreferencesContext'
 
 export default function AccessibilityControls() {

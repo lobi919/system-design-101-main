@@ -1,4 +1,4 @@
-import matter from 'gray-matter'
+import fm from 'front-matter'
 
 export type Category = {
   id: string
@@ -21,8 +21,8 @@ export type Guide = {
   headings: { id: string; text: string; level: number }[]
 }
 
-const guideFiles = import.meta.glob('../data/guides/*.md', { as: 'raw', eager: true })
-const categoryFiles = import.meta.glob('../data/categories/*.md', { as: 'raw', eager: true })
+const guideFiles = import.meta.glob('../../data/guides/*.md', { query: '?raw', import: 'default', eager: true })
+const categoryFiles = import.meta.glob('../../data/categories/*.md', { query: '?raw', import: 'default', eager: true })
 
 function parseHeadings(body: string) {
   const lines = body.split('\n')
@@ -51,8 +51,8 @@ function fileIdFromPath(p: string) {
 export const categories: Category[] = Object.entries(categoryFiles)
   .map(([p, raw]) => {
     const id = fileIdFromPath(p)
-    const parsed = matter(raw as string)
-    const d = parsed.data as any
+    const parsed = fm(raw as string)
+    const d = parsed.attributes as any
     return {
       id,
       title: d.title,
@@ -66,9 +66,9 @@ export const categories: Category[] = Object.entries(categoryFiles)
 export const guides: Guide[] = Object.entries(guideFiles)
   .map(([p, raw]) => {
     const id = fileIdFromPath(p)
-    const parsed = matter(raw as string)
-    const d = parsed.data as any
-    const body = parsed.content
+    const parsed = fm(raw as string)
+    const d = parsed.attributes as any
+    const body = parsed.body
     return {
       id,
       title: d.title,

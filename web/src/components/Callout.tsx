@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Callout } from '../callouts'
 
 export default function CalloutBox({ item }: { item: Callout }) {
