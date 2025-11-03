@@ -92,6 +92,11 @@ button:focus-visible {
 .card:hover { border-color:#646cff }
 .card-title { font-weight:600; margin:6px 0 }
 .card-desc { font-size:14px; color:#aaa }
+.card-progress { position: relative; margin-top: 8px; background: #2a2a2a; border-radius: 999px; height: 10px; overflow: hidden }
+.card-progress .bar { position:absolute; left:0; top:0; height:100%; background:#4caf50 }
+.card-progress-text { position:absolute; right:6px; top:-18px; font-size:12px; color:#aaa }
+.hc .card-progress { background:#000 }
+.hc .card-progress .bar { background:#ff0 }
 
 /* Lists */
 .list { display:flex; flex-direction:column; gap:8px }
