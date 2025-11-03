@@ -6,6 +6,8 @@ import { guides } from '../content'
 import { useProgress } from '../context/ProgressContext'
 import HeadingIcon from '../components/HeadingIcon'
 import SmartPicture from '../components/SmartPicture'
+import { getCalloutsForGuide, getCalloutsForHeading } from '../callouts'
+import CalloutBox from '../components/Callout'
 
 export default function Guide() {
   const { id } = useParams()
@@ -44,6 +46,7 @@ export default function Guide() {
   }
 
   const badge = gp.xp >= 10 ? 'Pro' : gp.xp >= 5 ? 'Learner' : 'Beginner'
+  const guideCallouts = getCalloutsForGuide(guide.id)
 
   return (
     <main className="container guide" role="main">
@@ -86,10 +89,18 @@ export default function Guide() {
             remarkPlugins={[remarkGfm]}
             components={{
               h2: ({ node, children, ...props }: any) => (
-                <h2 {...props}><HeadingIcon text={String(children)} /> {children}</h2>
+                <>
+                  <h2 {...props}><HeadingIcon text={String(children)} /> {children}</h2>
+                  {getCalloutsForHeading(guide.id, (node?.data?.id || node?.properties?.id) ?? '')
+                    .map((c: any, idx: number) => <CalloutBox key={idx} item={c} />)}
+                </>
               ),
               h3: ({ node, children, ...props }: any) => (
-                <h3 {...props}><HeadingIcon text={String(children)} /> {children}</h3>
+                <>
+                  <h3 {...props}><HeadingIcon text={String(children)} /> {children}</h3>
+                  {getCalloutsForHeading(guide.id, (node?.data?.id || node?.properties?.id) ?? '')
+                    .map((c: any, idx: number) => <CalloutBox key={idx} item={c} />)}
+                </>
               ),
               img: ({ src, alt }: any) => (
                 <SmartPicture src={String(src)} alt={String(alt || '')} />
@@ -98,6 +109,10 @@ export default function Guide() {
           >
             {guide.body}
           </ReactMarkdown>
+          {/* Top-level callouts not tied to a specific heading */}
+          {guideCallouts.filter(c => !c.headingId).map((c, i) => (
+            <CalloutBox key={`guide-callout-${i}`} item={c} />
+          ))}
         </article>
       </div>
     </main>

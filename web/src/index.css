@@ -132,6 +132,14 @@ button:focus-visible {
 .skip-link { position:absolute; left:-9999px; top:0; background:#646cff; color:#fff; padding:8px 12px; border-radius:6px }
 .skip-link:focus { left: 8px; top: 8px; z-index: 1000 }
 
+/* Callouts */
+.callout { border:1px solid #2a2a2a; background:#141414; border-radius:8px; padding:12px; margin:12px 0 }
+.callout-title { display:block; margin-bottom:4px }
+.callout-info { border-color:#1e90ff; background:#101820 }
+.callout-tip { border-color:#2ecc71; background:#0e1a13 }
+.callout-warning { border-color:#f39c12; background:#1a1308 }
+.hc .callout { border-color:#fff; background:#000 }
+
 @media (max-width: 700px) {
   .guide-layout { grid-template-columns: 1fr }
   .steps { border-right: none; border-bottom: 1px solid #2a2a2a; padding-bottom: 12px; margin-bottom: 12px }

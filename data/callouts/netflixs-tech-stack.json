@@ -1,0 +1,16 @@
+[
+  {
+    "guideId": "netflixs-tech-stack",
+    "headingId": "frontendserver-communication-graphql",
+    "title": "Did you know?",
+    "body": "GraphQL lets clients request exactly the data they need, reducing over-fetching common with REST.",
+    "severity": "tip"
+  },
+  {
+    "guideId": "netflixs-tech-stack",
+    "headingId": "messagingstreaming-apache-kafka-and-fink",
+    "title": "Did you know?",
+    "body": "Kafka can handle millions of messages per second by using partitioning to scale horizontally.",
+    "severity": "info"
+  }
+]
